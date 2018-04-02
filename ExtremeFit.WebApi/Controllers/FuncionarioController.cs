@@ -37,7 +37,7 @@ namespace ExtremeFit.WebApi.Controllers
                 var funcionario = _repo.BuscarPorId(id);
                 
                 if(funcionario == null)
-                    return NotFound("Funcioanrio(a) não encontrado(a)");
+                    return NotFound("Funcionário(a) não encontrado(a)");
 
                 return Ok(funcionario);
             }

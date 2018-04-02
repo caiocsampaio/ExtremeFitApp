@@ -9,5 +9,7 @@ namespace ExtremeFit.Repository.DTOs
 
         [Required(ErrorMessage="A senha deve ser fornecida")]
         public string Senha { get; set; }
+        public string Rfid { get; set; }
+        public string Digital { get; set; }
     }
 }

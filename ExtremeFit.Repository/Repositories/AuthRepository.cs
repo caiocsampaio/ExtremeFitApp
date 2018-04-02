@@ -21,14 +21,21 @@ namespace ExtremeFit.Repository.Repositories
         {
             _context = context;
         }
-
+        
+        /// <summary>
+        /// Cadastro de novo funcionário
+        /// </summary>
+        /// <param name="funcionarioDto">informações de funcionário e login</param>
+        /// <returns>FuncionarioDomain</returns>
         public FuncionarioDomain CadastrarFuncionario(FuncionarioDto funcionarioDto)
         {
             try{
                 //criar UsuarioDto e criar UsuarioDomain com senha hash
                 var usuarioDto = new UsuarioDto{
                     Email = funcionarioDto.Email,
-                    Senha = funcionarioDto.Senha
+                    Senha = funcionarioDto.Senha,
+                    Rfid = funcionarioDto.Rfid,
+                    Digital = funcionarioDto.Digital
                 };
 
                 UsuarioDomain usuario = CriarUsuario(usuarioDto);
@@ -58,7 +65,12 @@ namespace ExtremeFit.Repository.Repositories
                throw new Exception(e.Message);
            }
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="especialistaDto"></param>
+        /// <returns></returns>
         public EspecialistaDomain CadastrarEspecialista(EspecialistaDto especialistaDto)
         {
             try{
@@ -106,6 +118,8 @@ namespace ExtremeFit.Repository.Repositories
                     Email = usuarioDto.Email,
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
+                    Rfid = usuarioDto.Rfid,
+                    Digital = usuarioDto.Digital,
                     DataAlteracao = DateTime.Now
                 };
                 
@@ -131,12 +145,28 @@ namespace ExtremeFit.Repository.Repositories
 
         public UsuarioDomain LoginDigital(string digital)
         {
-            throw new System.NotImplementedException();
+            if(digital == null)
+                return null;
+            
+            UsuarioDomain usuario = _context.Usuarios
+                                        .Include(u => u.Permissoes)
+                                            .ThenInclude(p => p.Permissao)
+                                        .FirstOrDefault(x => x.Digital == digital);
+
+            return usuario;
         }
 
         public UsuarioDomain LoginRfid(string rfid)
         {
-            throw new System.NotImplementedException();
+            if(rfid == null)
+                return null;
+            
+            UsuarioDomain usuario = _context.Usuarios
+                                        .Include(u => u.Permissoes)
+                                            .ThenInclude(p => p.Permissao)
+                                        .FirstOrDefault(x => x.Rfid == rfid);
+
+            return usuario;
         }
 
         public UsuarioDomain LoginUsuario(string nomeUsuario, string password)
@@ -204,8 +234,24 @@ namespace ExtremeFit.Repository.Repositories
             catch(Exception e){
                 throw new Exception(e.Message);
             }
-            throw new System.NotImplementedException();
         }
 
+        public int AtualizarRfid(string rfid, UsuarioDomain usuario)
+        {
+            usuario.Rfid = rfid;
+
+            _context.Usuarios.Update(usuario);
+
+            return _context.SaveChanges();
+        }
+
+        public int AtualizarDigital(string digital, UsuarioDomain usuario)
+        {
+            usuario.Digital = digital;
+
+            _context.Usuarios.Update(usuario);
+
+            return _context.SaveChanges();
+        }
     }
 }

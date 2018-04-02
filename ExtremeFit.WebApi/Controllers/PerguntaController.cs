@@ -21,7 +21,7 @@ namespace ExtremeFit.WebApi.Controllers
             try{
                 var lista = _repo.Listar();
 
-                if(lista == null)
+                if(lista.Count == 0)
                     return NotFound("Não foi encontrada nenhuma pergunta");
                 
                 return Ok(lista);
