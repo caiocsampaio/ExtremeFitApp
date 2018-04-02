@@ -49,7 +49,8 @@ namespace ExtremeFit.WebApi
             services.AddScoped<IPerguntaRepository, PerguntaRepository>();
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IEspecialistaRepository, EspecialistaRepository >();
+            services.AddScoped<IEspecialistaRepository, EspecialistaRepository>();
+            services.AddScoped<IDadosFuncionariosRepository, DadosFuncionarioRepository>();
 
             //configuração para token
             var signingConfigurations = new SigningConfigurations();
