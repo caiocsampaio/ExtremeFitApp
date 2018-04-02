@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ExtremeFit.Domain.Entities;
+using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +24,7 @@ namespace ExtremeFit.WebApi.Controllers
                 if(lista.Count == 0)
                     return NotFound("Nenhum(a) especialista encontrado(a)");
 
-                return Ok("Especialista cadastrado(a)");
+                return Ok(lista);
             }
             catch(Exception e){
                 throw new Exception(e.Message);
@@ -44,6 +45,28 @@ namespace ExtremeFit.WebApi.Controllers
             catch(Exception e){
                 throw new Exception(e.Message);
             }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Atualizar([FromBody] EspecialistaDto especialistaDto, int id)
+        {
+            var s = _repo.Atualizar(especialistaDto, id);
+
+            if(s == 0)
+                return BadRequest("Problema ao tentar atualizar especialista");
+
+            return Ok("Especialista atualizado(a)");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Excluir(int id)
+        {
+            var s = _repo.Deletar(id);
+
+            if(s == 0)
+                return BadRequest("Problema ao tentar excluir especialista");
+
+            return Ok("Especialista excluído(a)");
         }
     }
 }

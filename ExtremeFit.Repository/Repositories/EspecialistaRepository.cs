@@ -18,7 +18,33 @@ namespace ExtremeFit.Repository.Repositories
         }
         public int Atualizar(EspecialistaDto especialistaDto, int id)
         {
-            throw new System.NotImplementedException();
+            EspecialistaDomain especialista = _context.Especialistas.FirstOrDefault(x => x.Id == id);
+
+            // atualizar dados
+            especialista.Nome = especialistaDto.Nome;
+            especialista.Especialidade = especialistaDto.Especialidade;
+
+            _context.Especialistas.Update(especialista);
+
+            if(!string.IsNullOrEmpty(especialistaDto.Email) && !string.IsNullOrEmpty(especialistaDto.Senha)){
+
+                 //achar usuario relacionado
+                UsuarioDomain usuario = _context.Usuarios.FirstOrDefault(x => x.Id == especialista.UsuarioId);
+                UsuarioDto usuarioDto = new UsuarioDto{
+                    Email = especialistaDto.Email,
+                    Senha = especialistaDto.Senha
+                };
+
+                var novoUsuario = new AuthRepository(_context).CriarUsuario(usuarioDto);
+                usuario.Email = novoUsuario.Email;
+                usuario.PasswordHash = novoUsuario.PasswordHash;
+                usuario.PasswordSalt = novoUsuario.PasswordSalt;
+                usuario.DataAlteracao = DateTime.Now;
+
+                _context.Usuarios.Update(usuario);
+            }
+            
+            return _context.SaveChanges();
         }
 
         public EspecialistaDomain BuscarPorId(int id)
@@ -35,14 +61,24 @@ namespace ExtremeFit.Repository.Repositories
 
         public int Deletar(int id)
         {
-            throw new System.NotImplementedException();
+            //encontrar funcionario pelo id
+            EspecialistaDomain especialista = _context.Especialistas.FirstOrDefault(x => x.Id == id);
+            UsuarioDomain usuario = _context.Usuarios.FirstOrDefault(y => y.Id == especialista.UsuarioId);
+
+            //remover funcionario e usuario
+            _context.Especialistas.Remove(especialista);
+            _context.Usuarios.Remove(usuario);
+            
+            return _context.SaveChanges();
         }
 
         public List<EspecialistaDomain> Listar()
         {
             try{
                 var lista = _context.Especialistas
-                                    .Include("Usuario")
+                                    .Include(e => e.Usuario)
+                                        .ThenInclude(u => u.Permissoes)
+                                            .ThenInclude(p => p.Permissao)
                                     .ToList();
 
                 return lista;

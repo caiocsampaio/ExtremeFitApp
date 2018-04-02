@@ -76,5 +76,22 @@ namespace ExtremeFit.WebApi.Controllers
                 throw new Exception(e.Message);
             }
         }
+
+        [HttpPut("{id}/unidades-favoritas")]
+        public IActionResult UnidadesFavoritas([FromBody] UnidadesDto unidadesDto, int id)
+        {
+            if(unidadesDto.UnidadesFavoritasId.Length > 3)
+                return BadRequest("O número máximo de unidades favoritas são 3");
+            
+            if(unidadesDto.UnidadesFavoritasId.Length == 0)
+                return BadRequest("Forneça pelo menos uma unidade");
+
+            var s = _repo.AtualizarUnidades(unidadesDto, id);
+
+            if(s == 0)
+                return BadRequest("Problema ao tentar atualizar unidades favoritas");
+            
+            return Ok("Unidades atualizadas");
+        }
     }
 }

@@ -13,5 +13,7 @@ namespace ExtremeFit.Repository.Interfaces
         int Atualizar(FuncionarioDto funcionarioDto, int id);
 
         int Deletar(int id);
+        
+        int AtualizarUnidades(UnidadesDto unidadesDto, int id);
     }
 }

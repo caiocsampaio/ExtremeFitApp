@@ -81,10 +81,8 @@ namespace ExtremeFit.Repository.Repositories
                 };
 
                 UsuarioDomain usuario = CriarUsuario(usuarioDto);
+
                 //inserir no banco
-                usuario.Permissoes.Add(new UsuarioPermissaoDomain{
-                    Permissao = _context.Permissoes.FirstOrDefault(x => x.NomePermissao == "Especialista")
-                });
                 _context.Usuarios.Add(usuario);
 
                 //criar e inserir EspecialistaDomain no banco
@@ -93,6 +91,17 @@ namespace ExtremeFit.Repository.Repositories
                     Especialidade = especialistaDto.Especialidade,
                     Usuario = usuario
                 };
+
+                PermissaoDomain permissao = _context.Permissoes.FirstOrDefault(x => x.NomePermissao == "Especialista");
+
+                UsuarioPermissaoDomain usuarioPermissao = new UsuarioPermissaoDomain{
+                    UsuarioId = usuario.Id,
+                    PermissaoId = permissao.Id
+                };
+
+                _context.UsuariosPermissoes.Add(usuarioPermissao);
+
+                _context.Especialistas.Add(especialista);
 
                  //salvar alterações
                 _context.SaveChanges();

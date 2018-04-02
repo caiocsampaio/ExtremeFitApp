@@ -42,6 +42,9 @@ namespace ExtremeFit.WebApi.Controllers
             //Criar FuncionarioDto e cadastrar
             var especialista = _repo.CadastrarEspecialista(especialistaDto);
 
+            if(especialista == null)
+                return BadRequest("Problema ao tentar cadastrar especialista");
+
             return Ok("Especialista cadastrado");
         }
 

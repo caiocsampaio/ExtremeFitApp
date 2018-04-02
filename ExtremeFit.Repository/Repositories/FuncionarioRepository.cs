@@ -34,20 +34,23 @@ namespace ExtremeFit.Repository.Repositories
 
                 _context.Funcionarios.Update(funcionario);
 
-                //achar usuario relacionado
-                UsuarioDomain usuario = _context.Usuarios.FirstOrDefault(x => x.Id == funcionario.UsuarioId);
-                UsuarioDto usuarioDto = new UsuarioDto{
-                    Email = funcionarioDto.Email,
-                    Senha = funcionarioDto.Senha
-                };
+                if(!string.IsNullOrEmpty(funcionarioDto.Email) && !string.IsNullOrEmpty(funcionarioDto.Senha)){
+                    
+                    //achar usuario relacionado
+                    UsuarioDomain usuario = _context.Usuarios.FirstOrDefault(x => x.Id == funcionario.UsuarioId);
+                    UsuarioDto usuarioDto = new UsuarioDto{
+                        Email = funcionarioDto.Email,
+                        Senha = funcionarioDto.Senha
+                    };
 
-                var novoUsuario = new AuthRepository(_context).CriarUsuario(usuarioDto);
-                usuario.Email = novoUsuario.Email;
-                usuario.PasswordHash = novoUsuario.PasswordHash;
-                usuario.PasswordSalt = novoUsuario.PasswordSalt;
-                usuario.DataAlteracao = DateTime.Now;
+                    var novoUsuario = new AuthRepository(_context).CriarUsuario(usuarioDto);
+                    usuario.Email = novoUsuario.Email;
+                    usuario.PasswordHash = novoUsuario.PasswordHash;
+                    usuario.PasswordSalt = novoUsuario.PasswordSalt;
+                    usuario.DataAlteracao = DateTime.Now;
 
-                _context.Usuarios.Update(usuario);
+                    _context.Usuarios.Update(usuario);
+                }
 
                 return _context.SaveChanges();
             }
@@ -55,6 +58,31 @@ namespace ExtremeFit.Repository.Repositories
                 throw new Exception(e.Message);
             }
             throw new System.NotImplementedException();
+        }
+
+        public int AtualizarUnidades(UnidadesDto unidadesDto, int id)
+        {
+            FuncionarioDomain funcionario = _context.Funcionarios
+                                                .Include(f => f.UnidadesFavoritas)
+                                                .FirstOrDefault(x => x.Id == id);
+
+            if(funcionario == null)
+                return 0;
+
+            foreach (var unidade in funcionario.UnidadesFavoritas)
+            {
+                _context.FuncionariosUnidadesFavoritas.Remove(unidade);
+            }
+
+            foreach (var unidadeId in unidadesDto.UnidadesFavoritasId)
+            {
+                _context.FuncionariosUnidadesFavoritas.Add(new FuncionarioUnidadeSesiDomain{
+                    FuncionarioId = funcionario.Id,
+                    UnidadeId = unidadeId
+                });
+            }
+
+            return _context.SaveChanges();
         }
 
         public FuncionarioDomain BuscarPorId(int id)
