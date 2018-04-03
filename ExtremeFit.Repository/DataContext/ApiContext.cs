@@ -22,7 +22,7 @@ namespace ExtremeFit.Repository.DataContext
         public DbSet<PermissaoDomain> Permissoes { get; set; }
         public DbSet<PesquisaDomain> Pesquisas { get; set; }
         public DbSet<RelatorioDorDomain> Relatorios { get; set; }
-        public DbSet<UnidadeFavoritaDomain> UnidadesSesi { get; set; }
+        public DbSet<UnidadeSesiDomain> UnidadesSesi { get; set; }
         public DbSet<UsuarioDomain> Usuarios { get; set; }
         public DbSet<UsuarioPermissaoDomain> UsuariosPermissoes { get; set; }
     }

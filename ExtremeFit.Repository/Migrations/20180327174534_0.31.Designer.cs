@@ -338,7 +338,7 @@ namespace ExtremeFit.Repository.Migrations
                     b.ToTable("Relatorios");
                 });
 
-            modelBuilder.Entity("ExtremeFit.Domain.Entities.UnidadeFavoritaDomain", b =>
+            modelBuilder.Entity("ExtremeFit.Domain.Entities.UnidadeSesiDomain", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -434,7 +434,7 @@ namespace ExtremeFit.Repository.Migrations
 
             modelBuilder.Entity("ExtremeFit.Domain.Entities.EventoDomain", b =>
                 {
-                    b.HasOne("ExtremeFit.Domain.Entities.UnidadeFavoritaDomain", "Unidade")
+                    b.HasOne("ExtremeFit.Domain.Entities.UnidadeSesiDomain", "Unidade")
                         .WithOne("Eventos")
                         .HasForeignKey("ExtremeFit.Domain.Entities.EventoDomain", "UnidadeId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -460,7 +460,7 @@ namespace ExtremeFit.Repository.Migrations
                         .HasForeignKey("FuncionarioId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ExtremeFit.Domain.Entities.UnidadeFavoritaDomain", "Unidade")
+                    b.HasOne("ExtremeFit.Domain.Entities.UnidadeSesiDomain", "Unidade")
                         .WithMany("Funcionarios")
                         .HasForeignKey("UnidadeId")
                         .OnDelete(DeleteBehavior.Cascade);

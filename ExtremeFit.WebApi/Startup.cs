@@ -44,6 +44,7 @@ namespace ExtremeFit.WebApi
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
 
+            // INTERFACES DE REPOSITORIO
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IAlternativaRepository, AlternativaRepository>();
             services.AddScoped<IPerguntaRepository, PerguntaRepository>();
@@ -54,6 +55,10 @@ namespace ExtremeFit.WebApi
             services.AddScoped<IDicaRepository, DicaRepository>();
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
             services.AddScoped<IEventoRepository, EventoRepository>();
+            services.AddScoped<IIntensidadeDorRepository, IntensidadeDorRepository>();
+            services.AddScoped<ILocalDorRepository, LocalDorRepository>();
+            services.AddScoped<IPermissaoRepository, PermissaoRepository>();
+            services.AddScoped<IPesquisaRepository, PesquisaRepository>();
 
             //configuração para token
             var signingConfigurations = new SigningConfigurations();

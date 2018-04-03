@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ExtremeFit.Domain.Entities
 {
-    public class UnidadeFavoritaDomain : BaseDomain
+    public class UnidadeSesiDomain : BaseDomain
     {
         [Required]
         [StringLength(50, ErrorMessage="NomeUnidade max length = 50")]

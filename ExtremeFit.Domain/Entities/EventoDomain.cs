@@ -11,7 +11,7 @@ namespace ExtremeFit.Domain.Entities
         public string Descricao { get; set; }
 
         [ForeignKey("UnidadeId")]
-        public UnidadeFavoritaDomain Unidade { get; set; }
+        public UnidadeSesiDomain Unidade { get; set; }
         public int UnidadeId { get; set; }
 
         [ForeignKey("UsuarioId")]
