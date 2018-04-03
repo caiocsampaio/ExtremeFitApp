@@ -4569,7 +4569,7 @@
           "Microsoft.NETCore.Platforms": "2.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/_._": {}
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
@@ -12831,7 +12831,8 @@
       "Microsoft.AspNetCore.All >= 2.0.6",
       "Microsoft.NETCore.App >= 2.0.0",
       "Swashbuckle.AspNetCore >= 2.3.0",
-      "System.IdentityModel.Tokens.Jwt >= 5.1.4"
+      "System.IdentityModel.Tokens.Jwt >= 5.1.4",
+      "System.Text.Encoding.CodePages >= 4.5.0-preview1-26216-02"
     ]
   },
   "packageFolders": {
@@ -12904,6 +12905,10 @@
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
             "version": "[5.1.4, )"
+          },
+          "System.Text.Encoding.CodePages": {
+            "target": "Package",
+            "version": "[4.5.0-preview1-26216-02, )"
           }
         },
         "imports": [

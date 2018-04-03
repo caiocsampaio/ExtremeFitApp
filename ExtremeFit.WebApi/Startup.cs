@@ -147,6 +147,8 @@ namespace ExtremeFit.WebApi
             });
             
             app.UseMvc();
+
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
     }
 }

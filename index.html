@@ -1,0 +1,54 @@
+<html>
+    <head>
+            <script
+                src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous" ></script>
+    </head>   
+<body>
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="file" id="files" name="files" multiple />
+            <input type="button" id="upload"  value="Upload Selected Files" />
+            </form>
+</body>
+<script>
+    $(function () {
+
+        $("#upload").click(function (evt) {
+            evt.preventDefault();
+            var fileupload = $("#files").get(0);
+            var files = fileupload.files;
+            var data = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                data.append('arquivo', files[i]);
+            }
+
+            // You can update the jquery selector to use a css class if you want
+            $("input[type='text'").each(function (x, y) {
+                data.append($(y).attr("name"), $(y).val());
+            });
+
+            $.ajax({
+                type: "post",
+                url: "http://localhost:5000/api/excel",
+                contentType: false,
+                processData: false,
+                data: data,
+                method: "post",            
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.responseText);
+                    } else {
+                        // DoSomethingElse()
+                        alert(response.responseText);
+                    }                          
+                },
+                error: function (response) {
+                    alert("error!");  // 
+                }
+        });  
+    });
+});
+</script>
+</html>

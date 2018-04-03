@@ -14,6 +14,7 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.1.4"/>
     <PackageReference Include="ExcelDataReader" Version="3.4.0"/>
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.4.0"/>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0-preview1-26216-02"/>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0"/>
   </ItemGroup>
   <ItemGroup>

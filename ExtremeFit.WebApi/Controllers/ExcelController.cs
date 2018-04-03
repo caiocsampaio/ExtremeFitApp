@@ -37,21 +37,17 @@ namespace ExtremeFit.WebApi.Controllers
             var result = reader.AsDataSet();
             reader.Close();
 
-            for(int i = 1; i < result.Tables[0].Rows.Count; i++){
+            var dados = new DadosFuncionarioDomain();
 
-                DadosFuncionarioDomain dados = new DadosFuncionarioDomain();
-                
+            for(int i = 1; i < result.Tables[0].Rows.Count; i++){
 
                 dados.CPF = result.Tables[0].Rows[i][0].ToString();
                 dados.Setor = result.Tables[0].Rows[i][1].ToString();
                 dados.Funcao = result.Tables[0].Rows[i][2].ToString();
                 string CNPJ = result.Tables[0].Rows[i][3].ToString();
-                
             }
 
-           
-            return Ok();
-            
+            return Ok();            
         }
     }
 }

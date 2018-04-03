@@ -30,7 +30,8 @@
           "Microsoft.AspNetCore.All": "2.0.6",
           "Microsoft.NETCore.App": "2.0.0",
           "Swashbuckle.AspNetCore": "2.3.0",
-          "System.IdentityModel.Tokens.Jwt": "5.1.4"
+          "System.IdentityModel.Tokens.Jwt": "5.1.4",
+          "System.Text.Encoding.CodePages": "4.5.0-preview1-26216-02"
         },
         "runtime": {
           "ExtremeFit.WebApi.dll": {}
@@ -3765,6 +3766,9 @@
             "rid": "win",
             "assetType": "runtime"
           }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
         }
       },
       "System.Text.Encoding.Extensions/4.3.0": {
