@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="arquivo">arquivo excel com dados dos funcionários</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Empresa")]
         [HttpPost]
         public IActionResult CadastrarExcel(IFormFile arquivo)
         {

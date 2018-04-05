@@ -1,6 +1,7 @@
 using System;
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -9,6 +10,7 @@ namespace ExtremeFit.WebApi.Controllers
     /// Controller para acessar dados de Alternativas
     /// </summary>
     [Route("api/alternativas")]
+    [Authorize]
     public class AlternativaController : Controller
     {
         private readonly IAlternativaRepository _repo;

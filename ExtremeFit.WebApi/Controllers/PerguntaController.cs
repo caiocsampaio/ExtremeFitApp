@@ -2,6 +2,7 @@ using System;
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -27,6 +28,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todas as perguntas cadastradas
         /// </summary>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpGet]
         public IActionResult Listar(){
             try{
@@ -47,6 +49,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID da pergunta</param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult BuscarId(int id)
         {
@@ -68,6 +71,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="perguntaDto">informações de pergunta com alternativas</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpPost]
         public IActionResult Cadastrar([FromBody] PerguntaDto perguntaDto){
 
@@ -90,6 +94,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="perguntaDto">informações atualizadas da pergunta</param>
         /// <param name="id">ID da pergunta</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] PerguntaDto perguntaDto, int id){
 
@@ -111,6 +116,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID da alternativa</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id){
             try{

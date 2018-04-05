@@ -1,6 +1,7 @@
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -26,6 +27,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todas as empresas cadatradas
         /// </summary>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -42,6 +44,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID da empresa</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -58,6 +61,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="empresaDto">informações da empresa</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpPost]
         public IActionResult CadastrarEmpresa([FromBody] EmpresaDto empresaDto)
         {
@@ -75,6 +79,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="empresaDto">informações atualizadas da empresa</param>
         /// <param name="id">ID da empresa</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] EmpresaDto empresaDto, int id)
         {
@@ -94,6 +99,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID da empresa</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

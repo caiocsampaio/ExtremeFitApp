@@ -1,6 +1,7 @@
 using System;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -26,6 +27,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todos os funcionários cadastrados
         /// </summary>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpGet]
         public IActionResult Listar(){
             try{
@@ -46,6 +48,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID do funcionário</param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -68,6 +71,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="funcionarioDto"></param>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] FuncionarioDto funcionarioDto, int id){
 
@@ -89,6 +93,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id){
             try{
@@ -110,6 +115,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="unidadesDto">informações da unidade</param>
         /// <param name="id">ID do funcionário</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut("{id}/unidades-favoritas")]
         public IActionResult UnidadesFavoritas([FromBody] UnidadesDto unidadesDto, int id)
         {

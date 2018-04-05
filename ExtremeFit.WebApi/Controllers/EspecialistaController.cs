@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -28,6 +29,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista dados de todos os especialistas
         /// </summary>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpGet]
         public IActionResult Listar(){
             try{
@@ -48,6 +50,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID do especialista</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -70,6 +73,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="especialistaDto">informações atualizadas do especialista</param>
         /// <param name="id">ID do especialista</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] EspecialistaDto especialistaDto, int id)
         {
@@ -86,6 +90,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID do especialista</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

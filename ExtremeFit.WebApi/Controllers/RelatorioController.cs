@@ -1,6 +1,7 @@
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -26,6 +27,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todos os relatórios cadastrados
         /// </summary>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista,Empresa")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -42,6 +44,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista,Empresa")]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -58,6 +61,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="relatorioDto">informações de relatório</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public IActionResult Cadastrar([FromBody] RelatorioDto relatorioDto)
         {
@@ -78,6 +82,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="relatorioDto">informações atualizadas de relatório</param>
         /// <param name="id">ID do relatório</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] RelatorioDto relatorioDto, int id)
         {
@@ -100,6 +105,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID do relatório</param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {

@@ -1,6 +1,7 @@
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -26,6 +27,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todas as dicas cadastradas
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -42,6 +44,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID da dica</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -58,6 +61,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="dicaDto">informações da dica</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpPost]
         public IActionResult CadastrarDica([FromBody] DicaDto dicaDto)
         {
@@ -75,6 +79,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="dicaDto">dados atualizados da dica</param>
         /// <param name="id">ID da dica</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] DicaDto dicaDto, int id)
         {
@@ -91,6 +96,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID da dica</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {
@@ -108,6 +114,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="validarDica">informação true/false</param>
         /// <param name="id">ID da dica</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpPut("{id}/validar")]
         public IActionResult Validar([FromBody] ValidarDicaDto validarDica, int id)
         {

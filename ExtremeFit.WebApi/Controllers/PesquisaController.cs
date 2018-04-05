@@ -1,6 +1,7 @@
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -26,6 +27,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todas as pesquisas cadastradas
         /// </summary>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista,Empresa")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -42,6 +44,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista,Empresa")]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -58,6 +61,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="pesquisaDto">informações de pesquisa com alternativa escolhida</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public IActionResult Cadastrar(PesquisaDto pesquisaDto)
         {

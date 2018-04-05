@@ -1,6 +1,7 @@
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -26,6 +27,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todos os dados de funcionários já cadastrados
         /// </summary>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -42,6 +44,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID do funcionário</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -58,6 +61,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="dadosFuncionarioDto">dados do funcionário</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Empresa")]
         [HttpPost]
         public IActionResult CadastrarDados([FromBody] DadosFuncionarioDto dadosFuncionarioDto)
         {
@@ -78,6 +82,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="dadosFuncionarioDto">dados atualizados do funcionário</param>
         /// <param name="id">ID do funcionário</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Empresa")]
         [HttpPut("{id}")]
         public IActionResult AtualizarDados([FromBody] DadosFuncionarioDto dadosFuncionarioDto, int id)
         {
@@ -100,6 +105,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID do funcionário</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Empresa")]
         [HttpDelete("{id}")]
         public IActionResult ExcluirDados(int id)
         {

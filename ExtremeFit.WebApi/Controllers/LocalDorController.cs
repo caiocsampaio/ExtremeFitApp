@@ -1,4 +1,5 @@
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -24,6 +25,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todos os locais cadastrados
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public IActionResult Listar()
         {

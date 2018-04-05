@@ -2,6 +2,7 @@ using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
 using ExtremeFit.WebApi.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -28,6 +29,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="funcionarioDto">informaçoes pessoais e de login</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost("cadastro/funcionario")]
         public IActionResult CadastrarFuncionario([FromBody] FuncionarioDto funcionarioDto)
         {
@@ -50,6 +52,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="especialistaDto">informações pessoais e de login</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpPost("cadastro/especialista")]
         public IActionResult CadastrarEspecialista([FromBody] EspecialistaDto especialistaDto)
         {
@@ -73,6 +76,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="signingConfigurations">assinatura já configurada no sistema</param>
         /// <param name="tokenConfigurations">token já configurado no sistema</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] UsuarioDto usuarioDto, 
                                     [FromServices]SigningConfigurations signingConfigurations,
@@ -98,6 +102,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="signingConfigurations">assinatura já configurada no sistema</param>
         /// <param name="tokenConfigurations">token já configurado no sistema</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost("login/rfid")]
         public IActionResult LoginRfid([FromBody] IotDto iotDto, 
                                         [FromServices]SigningConfigurations signingConfigurations,
@@ -128,6 +133,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="signingConfigurations">assinatura já configurada no sistema</param>
         /// <param name="tokenConfigurations">token já configurado no sistema</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost("login/digital")]
         public IActionResult LoginDigital([FromBody] IotDto iotDto, 
                                             [FromServices]SigningConfigurations signingConfigurations,
@@ -158,6 +164,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="signingConfigurations">assinatura já configurada no sistema</param>
         /// <param name="tokenConfigurations">token já configurado no sistema</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPut("atualizar/iot")]
         public IActionResult AtualizarIot([FromBody] UsuarioDto usuarioDto, 
                                             [FromServices]SigningConfigurations signingConfigurations,

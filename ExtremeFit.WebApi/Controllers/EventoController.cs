@@ -1,6 +1,7 @@
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -26,6 +27,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todos os eventos cadastrados
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -42,6 +44,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID do evento</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -58,6 +61,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="eventoDto">informações do evento</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpPost]
         public IActionResult CadastrarEvento([FromBody] EventoDto eventoDto)
         {
@@ -75,6 +79,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="eventoDto">informações atualizadas de evento</param>
         /// <param name="id">ID do evento</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] EventoDto eventoDto, int id)
         {
@@ -94,6 +99,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID do evento</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi,Especialista")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

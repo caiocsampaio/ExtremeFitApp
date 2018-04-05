@@ -1,4 +1,5 @@
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -24,6 +25,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// Lista todas as permissões cadastradas
         /// </summary>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpGet]
         public IActionResult Listar()
         {

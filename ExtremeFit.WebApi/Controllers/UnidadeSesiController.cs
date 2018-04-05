@@ -1,6 +1,7 @@
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
@@ -27,6 +28,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Listar()
         {
             var lista = _repo.Lista();
@@ -42,6 +44,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID da unidade</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -58,6 +61,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="id">ID da unidade</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("{id}/eventos")]
         public IActionResult BuscarEventos(int id)
         {
@@ -74,6 +78,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// </summary>
         /// <param name="unidadeSesiDto">informações da unidade</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpPost]
         public IActionResult Cadastrar(UnidadeSesiDto unidadeSesiDto)
         {
@@ -91,6 +96,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <param name="unidadeSesiDto">informações atualizadas</param>
         /// <param name="id">ID da unidade</param>
         /// <returns></returns>
+        [Authorize("Bearer", Roles="Admin,Sesi")]
         [HttpPut("{id}")]
         public IActionResult Atualizar(UnidadeSesiDto unidadeSesiDto, int id)
         {
