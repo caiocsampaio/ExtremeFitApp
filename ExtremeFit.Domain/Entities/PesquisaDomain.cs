@@ -18,7 +18,7 @@ namespace ExtremeFit.Domain.Entities
 
         [ForeignKey("EmpresaId")]
         public EmpresaDomain Empresa { get; set; }
-        public int EmpresaId { get; set; }
+        public int EmpresaDomainId { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]

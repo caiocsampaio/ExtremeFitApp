@@ -35,7 +35,7 @@ namespace ExtremeFit.Repository.Repositories
 
             var pesquisa = new PesquisaDomain{
                 AlternativaId = alternativa.Id,
-                EmpresaId = dadosFuncionario.EmpresaId,
+                EmpresaDomainId = dadosFuncionario.EmpresaId,
                 Setor = dadosFuncionario.Setor,
                 Pergunta = alternativa.Pergunta.Pergunta
             };
