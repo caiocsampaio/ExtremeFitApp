@@ -5,14 +5,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller de acesso a informações de unidades Sesi
+    /// </summary>
     [Route("api/unidades-sesi")]
     public class UnidadeSesiController : Controller
     {
         private readonly IUnidadeSesiRepository _repo;
+
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public UnidadeSesiController(IUnidadeSesiRepository repo)
         {
             _repo = repo;
         }
+
+        /// <summary>
+        /// Lista todas as unidades Sesi
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -24,6 +37,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(lista);
         }
 
+        /// <summary>
+        /// Retorna dados de uma única unidade Sesi
+        /// </summary>
+        /// <param name="id">ID da unidade</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -35,6 +53,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(unidade);
         }
 
+        /// <summary>
+        /// Retorna lista de todos os eventos de uma unidade Sesi
+        /// </summary>
+        /// <param name="id">ID da unidade</param>
+        /// <returns></returns>
         [HttpGet("{id}/eventos")]
         public IActionResult BuscarEventos(int id)
         {
@@ -46,6 +69,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(listaEventos);
         }
 
+        /// <summary>
+        /// Cadastro de nova unidade Sesi
+        /// </summary>
+        /// <param name="unidadeSesiDto">informações da unidade</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Cadastrar(UnidadeSesiDto unidadeSesiDto)
         {
@@ -57,6 +85,12 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Unidade cadastrada");
         }
 
+        /// <summary>
+        /// Atualização de dados de uma unidade Sesi
+        /// </summary>
+        /// <param name="unidadeSesiDto">informações atualizadas</param>
+        /// <param name="id">ID da unidade</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar(UnidadeSesiDto unidadeSesiDto, int id)
         {

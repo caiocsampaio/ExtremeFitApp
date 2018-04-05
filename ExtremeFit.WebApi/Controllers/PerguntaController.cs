@@ -6,16 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller de acesso a informações de perguntas
+    /// </summary>
     [Route("api/perguntas")]
     public class PerguntaController : Controller
     {
         private readonly IPerguntaRepository _repo;
 
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public PerguntaController(IPerguntaRepository repo)
         {
             _repo = repo;
         }
 
+        /// <summary>
+        /// Lista todas as perguntas cadastradas
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Listar(){
             try{
@@ -30,7 +41,12 @@ namespace ExtremeFit.WebApi.Controllers
                 throw new Exception(e.Message);
             }
         }
-
+        
+        /// <summary>
+        /// Retorna dados de uma única pergunta
+        /// </summary>
+        /// <param name="id">ID da pergunta</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult BuscarId(int id)
         {
@@ -47,6 +63,11 @@ namespace ExtremeFit.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Cadastro de nova pergunta com alternativas associadas
+        /// </summary>
+        /// <param name="perguntaDto">informações de pergunta com alternativas</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Cadastrar([FromBody] PerguntaDto perguntaDto){
 
@@ -63,6 +84,12 @@ namespace ExtremeFit.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza uma pergunta e as alternativas
+        /// </summary>
+        /// <param name="perguntaDto">informações atualizadas da pergunta</param>
+        /// <param name="id">ID da pergunta</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] PerguntaDto perguntaDto, int id){
 
@@ -79,6 +106,11 @@ namespace ExtremeFit.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Exclui uma pergunta e alternativas associadas
+        /// </summary>
+        /// <param name="id">ID da alternativa</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id){
             try{

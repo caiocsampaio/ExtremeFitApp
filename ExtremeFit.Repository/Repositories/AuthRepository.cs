@@ -235,7 +235,7 @@ namespace ExtremeFit.Repository.Repositories
         public bool CpfCadastrado(string cpf)
         {
             try{
-                if(_context.DadosFuncionarios.Any(x => x.CPF == cpf))
+                if(_context.Funcionarios.Any(x => x.CPF == cpf))
                     return true;
                 
                 return false;

@@ -11,9 +11,10 @@ using System;
 namespace ExtremeFit.Repository.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20180405191624_Final")]
+    partial class Final
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,6 +291,8 @@ namespace ExtremeFit.Repository.Migrations
                     b.Property<DateTime>("Data");
 
                     b.Property<int>("EmpresaDomainId");
+
+                    b.Property<string>("Pergunta");
 
                     b.Property<string>("Setor")
                         .IsRequired()

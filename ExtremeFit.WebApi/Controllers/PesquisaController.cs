@@ -5,15 +5,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller de acesso a informações de pesquisas realizadas
+    /// </summary>
     [Route("api/pesquisas")]
     public class PesquisaController : Controller
     {
         private readonly IPesquisaRepository _repo;
+
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public PesquisaController(IPesquisaRepository repo)
         {
             _repo = repo;
         }
 
+        /// <summary>
+        /// Lista todas as pesquisas cadastradas
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -25,6 +37,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(lista);
         }
 
+        /// <summary>
+        /// Retorna dados de uma única pesquisa
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -36,6 +53,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(pesquisa);
         }
 
+        /// <summary>
+        /// Cadastro de nova pesquisa
+        /// </summary>
+        /// <param name="pesquisaDto">informações de pesquisa com alternativa escolhida</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Cadastrar(PesquisaDto pesquisaDto)
         {

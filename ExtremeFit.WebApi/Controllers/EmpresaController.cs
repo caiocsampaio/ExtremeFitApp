@@ -5,15 +5,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller de acesso a informações de dados de empresas
+    /// </summary>
     [Route("api/empresas")]
     public class EmpresaController : Controller
     {
         private readonly IEmpresaRepository _repo;
+
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public EmpresaController(IEmpresaRepository repo)
         {
             _repo = repo;
         }
 
+        /// <summary>
+        /// Lista todas as empresas cadatradas
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -25,6 +37,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(lista);
         }
 
+        /// <summary>
+        /// Retorna dados de uma única empresa
+        /// </summary>
+        /// <param name="id">ID da empresa</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -36,6 +53,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(empresa);
         }
 
+        /// <summary>
+        /// Cadastro de nova empresa
+        /// </summary>
+        /// <param name="empresaDto">informações da empresa</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CadastrarEmpresa([FromBody] EmpresaDto empresaDto)
         {
@@ -47,6 +69,12 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Empresa cadastrada");
         }
         
+        /// <summary>
+        /// Atualiza dados de uma empresa
+        /// </summary>
+        /// <param name="empresaDto">informações atualizadas da empresa</param>
+        /// <param name="id">ID da empresa</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] EmpresaDto empresaDto, int id)
         {
@@ -61,6 +89,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Empresa atualizada");
         }
         
+        /// <summary>
+        /// Exclui dados de uma empresa
+        /// </summary>
+        /// <param name="id">ID da empresa</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

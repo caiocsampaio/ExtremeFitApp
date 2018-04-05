@@ -6,15 +6,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller para realização de cadastros de usuários e login
+    /// </summary>
     [Route("api/auth")]
     public class AuthController : Controller
     {
         private readonly IAuthRepository _repo;
+
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public AuthController(IAuthRepository repo)
         {
             _repo = repo;
         }
 
+        /// <summary>
+        /// Cadastro de funcionário e usuário associado
+        /// </summary>
+        /// <param name="funcionarioDto">informaçoes pessoais e de login</param>
+        /// <returns></returns>
         [HttpPost("cadastro/funcionario")]
         public IActionResult CadastrarFuncionario([FromBody] FuncionarioDto funcionarioDto)
         {
@@ -32,6 +45,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Funcionário cadastrado");
         }
         
+        /// <summary>
+        /// Cadastro de especialista e usuário associado
+        /// </summary>
+        /// <param name="especialistaDto">informações pessoais e de login</param>
+        /// <returns></returns>
         [HttpPost("cadastro/especialista")]
         public IActionResult CadastrarEspecialista([FromBody] EspecialistaDto especialistaDto)
         {
@@ -48,6 +66,13 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Especialista cadastrado");
         }
 
+        /// <summary>
+        /// Login de usuário
+        /// </summary>
+        /// <param name="usuarioDto">nome de usuário e senha</param>
+        /// <param name="signingConfigurations">assinatura já configurada no sistema</param>
+        /// <param name="tokenConfigurations">token já configurado no sistema</param>
+        /// <returns></returns>
         [HttpPost("login")]
         public IActionResult Login([FromBody] UsuarioDto usuarioDto, 
                                     [FromServices]SigningConfigurations signingConfigurations,
@@ -66,6 +91,13 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(token);
         }
 
+        /// <summary>
+        /// Login de usuário por cartão RFID
+        /// </summary>
+        /// <param name="iotDto">número RFID</param>
+        /// <param name="signingConfigurations">assinatura já configurada no sistema</param>
+        /// <param name="tokenConfigurations">token já configurado no sistema</param>
+        /// <returns></returns>
         [HttpPost("login/rfid")]
         public IActionResult LoginRfid([FromBody] IotDto iotDto, 
                                         [FromServices]SigningConfigurations signingConfigurations,
@@ -89,6 +121,13 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(token);
         }
 
+        /// <summary>
+        /// Login de usuário por digital
+        /// </summary>
+        /// <param name="iotDto">número da digital</param>
+        /// <param name="signingConfigurations">assinatura já configurada no sistema</param>
+        /// <param name="tokenConfigurations">token já configurado no sistema</param>
+        /// <returns></returns>
         [HttpPost("login/digital")]
         public IActionResult LoginDigital([FromBody] IotDto iotDto, 
                                             [FromServices]SigningConfigurations signingConfigurations,
@@ -112,6 +151,13 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(token);
         }
 
+        /// <summary>
+        /// Atualiza dados de IOT (RFID e digital)
+        /// </summary>
+        /// <param name="usuarioDto">informações atualizadas do usuário correspondente</param>
+        /// <param name="signingConfigurations">assinatura já configurada no sistema</param>
+        /// <param name="tokenConfigurations">token já configurado no sistema</param>
+        /// <returns></returns>
         [HttpPut("atualizar/iot")]
         public IActionResult AtualizarIot([FromBody] UsuarioDto usuarioDto, 
                                             [FromServices]SigningConfigurations signingConfigurations,

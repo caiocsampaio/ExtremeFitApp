@@ -8,7 +8,7 @@ namespace ExtremeFit.Domain.Entities
         public FuncionarioDomain Funcionario { get; set; }
         public int FuncionarioId { get; set; }
 
-        [ForeignKey("UnidadeId")]
+        [ForeignKey("UnidadeSesiId")]
         public UnidadeSesiDomain Unidade { get; set; }
         public int UnidadeSesiId { get; set; }
     }

@@ -7,8 +7,18 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ExtremeFit.WebApi.Authorization
 {
+    /// <summary>
+    /// Classe para gerar token de login
+    /// </summary>
     public class TokenLogin
     {
+        /// <summary>
+        /// Gera o token de login com informações de usuário e permissões
+        /// </summary>
+        /// <param name="usuario"> informações de usuario</param>
+        /// <param name="signingConfigurations">configurações de assinatura</param>
+        /// <param name="tokenConfigurations">configurações de token</param>
+        /// <returns></returns>
         public object GerarToken(UsuarioDomain usuario, SigningConfigurations signingConfigurations,
                                     TokenConfigurations tokenConfigurations)
         {

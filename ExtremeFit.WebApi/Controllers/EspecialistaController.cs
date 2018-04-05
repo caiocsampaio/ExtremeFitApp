@@ -7,15 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller de acesso a informações de dados de especialistas
+    /// </summary>
     [Route("api/especialistas")]
     public class EspecialistaController : Controller
     {
         private readonly IEspecialistaRepository _repo;
+
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public EspecialistaController(IEspecialistaRepository repo)
         {
             _repo = repo;
         }
 
+        /// <summary>
+        /// Lista dados de todos os especialistas
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Listar(){
             try{
@@ -31,6 +43,11 @@ namespace ExtremeFit.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retorna dados de um único especialista
+        /// </summary>
+        /// <param name="id">ID do especialista</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -47,6 +64,12 @@ namespace ExtremeFit.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza dados de um especialista
+        /// </summary>
+        /// <param name="especialistaDto">informações atualizadas do especialista</param>
+        /// <param name="id">ID do especialista</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] EspecialistaDto especialistaDto, int id)
         {
@@ -58,6 +81,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Especialista atualizado(a)");
         }
 
+        /// <summary>
+        /// Exclui um especialista
+        /// </summary>
+        /// <param name="id">ID do especialista</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

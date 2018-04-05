@@ -5,15 +5,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller de acesso a informações de relatórios produzidos por funcionários
+    /// </summary>
     [Route("api/relatorios")]
     public class RelatorioController : Controller
     {
         private readonly IRelatorioRepository _repo;
+
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public RelatorioController(IRelatorioRepository repo)
         {
             _repo = repo;
         }
 
+        /// <summary>
+        /// Lista todos os relatórios cadastrados
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -25,6 +37,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(lista);
         }
 
+        /// <summary>
+        /// Retorna dados de um único relatório
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -36,6 +53,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(relatorio);
         }
 
+        /// <summary>
+        /// Cadastro de novo relatório
+        /// </summary>
+        /// <param name="relatorioDto">informações de relatório</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Cadastrar([FromBody] RelatorioDto relatorioDto)
         {
@@ -50,6 +72,12 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Relatório cadastrado");
         }
 
+        /// <summary>
+        /// Atualiza informações de relatório
+        /// </summary>
+        /// <param name="relatorioDto">informações atualizadas de relatório</param>
+        /// <param name="id">ID do relatório</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar([FromBody] RelatorioDto relatorioDto, int id)
         {
@@ -67,6 +95,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Relatório atualizado");
         }
 
+        /// <summary>
+        /// Exclui dados de relatório
+        /// </summary>
+        /// <param name="id">ID do relatório</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {

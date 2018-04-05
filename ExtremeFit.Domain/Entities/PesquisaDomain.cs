@@ -10,13 +10,11 @@ namespace ExtremeFit.Domain.Entities
         public AlternativaDomain Alternativa { get; set; }
         public int AlternativaId { get; set; }
 
-        public string Pergunta { get; set; }
-
         [Required]
         [StringLength(30, ErrorMessage="Setor max length = 30")]
         public string Setor { get; set; }
 
-        [ForeignKey("EmpresaId")]
+        [ForeignKey("EmpresaDomainId")]
         public EmpresaDomain Empresa { get; set; }
         public int EmpresaDomainId { get; set; }
 

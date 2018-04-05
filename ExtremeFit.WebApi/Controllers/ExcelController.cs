@@ -7,15 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller para cadastro de dados de usuário por planilhas de excel
+    /// </summary>
     [Route("api/excel")]
     public class ExcelController : Controller
     {
         private readonly IExcelRepository _repo;
+
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public ExcelController(IExcelRepository repo)
         {
             _repo = repo;
         }
 
+        /// <summary>
+        /// Cadastro de dados de funcionários com planilha excel
+        /// </summary>
+        /// <param name="arquivo">arquivo excel com dados dos funcionários</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CadastrarExcel(IFormFile arquivo)
         {

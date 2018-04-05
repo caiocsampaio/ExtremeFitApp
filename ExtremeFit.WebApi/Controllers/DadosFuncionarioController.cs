@@ -5,15 +5,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExtremeFit.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller de acesso a informações de dados de funcionários (CPF, Setor, Função)
+    /// </summary>
     [Route("api/dados-funcionarios")]
     public class DadosFuncionarioController : Controller
     {
         private readonly IDadosFuncionariosRepository _repo;
+
+        /// <summary>
+        /// Construtor de classe com acesso ao repositório
+        /// </summary>
+        /// <param name="repo">Repositório de Autorização</param>
         public DadosFuncionarioController(IDadosFuncionariosRepository repo)
         {
             _repo = repo;
         }
 
+        /// <summary>
+        /// Lista todos os dados de funcionários já cadastrados
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Listar()
         {
@@ -25,6 +37,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(lista);
         }
 
+        /// <summary>
+        /// Retorna dados de um único funcionário
+        /// </summary>
+        /// <param name="id">ID do funcionário</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -36,6 +53,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok(dados);
         }
 
+        /// <summary>
+        /// Cadastro de novos dados (CPF, Setor e Função) de um único funcionário
+        /// </summary>
+        /// <param name="dadosFuncionarioDto">dados do funcionário</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CadastrarDados([FromBody] DadosFuncionarioDto dadosFuncionarioDto)
         {
@@ -50,6 +72,12 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Dados cadastrados");
         }
 
+        /// <summary>
+        /// Atualiza dados de funcionário
+        /// </summary>
+        /// <param name="dadosFuncionarioDto">dados atualizados do funcionário</param>
+        /// <param name="id">ID do funcionário</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult AtualizarDados([FromBody] DadosFuncionarioDto dadosFuncionarioDto, int id)
         {
@@ -67,6 +95,11 @@ namespace ExtremeFit.WebApi.Controllers
             return Ok("Dados atualizados");
         }
 
+        /// <summary>
+        /// Exclui dados de um funcionário
+        /// </summary>
+        /// <param name="id">ID do funcionário</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult ExcluirDados(int id)
         {
