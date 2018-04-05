@@ -4,5 +4,715 @@
         <name>ExtremeFit.WebApi</name>
     </assembly>
     <members>
+        <member name="T:ExtremeFit.WebApi.Authorization.SigningConfigurations">
+            <summary>
+            Configurações de token
+            </summary>
+        </member>
+        <member name="P:ExtremeFit.WebApi.Authorization.SigningConfigurations.Key">
+            <summary>
+            TokenKey
+            </summary>
+        </member>
+        <member name="P:ExtremeFit.WebApi.Authorization.SigningConfigurations.SigningCredentials">
+            <summary>
+            TokenCredentials
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Authorization.SigningConfigurations.#ctor">
+            <summary>
+            Configurações de token
+            </summary>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Authorization.TokenConfigurations">
+            <summary>
+            Objeto para criação do token de login
+            </summary>
+        </member>
+        <member name="P:ExtremeFit.WebApi.Authorization.TokenConfigurations.Audience">
+            <summary>
+            TokenAudience
+            </summary>
+        </member>
+        <member name="P:ExtremeFit.WebApi.Authorization.TokenConfigurations.Issuer">
+            <summary>
+            TokenIssuer
+            </summary>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Authorization.TokenLogin">
+            <summary>
+            Classe para gerar token de login
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Authorization.TokenLogin.GerarToken(ExtremeFit.Domain.Entities.UsuarioDomain,ExtremeFit.WebApi.Authorization.SigningConfigurations,ExtremeFit.WebApi.Authorization.TokenConfigurations)">
+            <summary>
+            Gera o token de login com informações de usuário e permissões
+            </summary>
+            <param name="usuario"> informações de usuario</param>
+            <param name="signingConfigurations">configurações de assinatura</param>
+            <param name="tokenConfigurations">configurações de token</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.AlternativaController">
+            <summary>
+            Controller para acessar dados de Alternativas
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AlternativaController.#ctor(ExtremeFit.Repository.Interfaces.IAlternativaRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Alternativas</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AlternativaController.Listar">
+            <summary>
+            Lista todas as alternativas de todas as perguntas cadastradas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AlternativaController.BuscarAlternativa(System.Int32)">
+            <summary>
+            Retorna uma alternativa pesquisada pelo ID fornecido
+            </summary>
+            <param name="id">ID da alternativa</param>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.AuthController">
+            <summary>
+            Controller para realização de cadastros de usuários e login
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AuthController.#ctor(ExtremeFit.Repository.Interfaces.IAuthRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AuthController.CadastrarFuncionario(ExtremeFit.Repository.DTOs.FuncionarioDto)">
+            <summary>
+            Cadastro de funcionário e usuário associado
+            </summary>
+            <param name="funcionarioDto">informaçoes pessoais e de login</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AuthController.CadastrarEspecialista(ExtremeFit.Repository.DTOs.EspecialistaDto)">
+            <summary>
+            Cadastro de especialista e usuário associado
+            </summary>
+            <param name="especialistaDto">informações pessoais e de login</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AuthController.Login(ExtremeFit.Repository.DTOs.UsuarioDto,ExtremeFit.WebApi.Authorization.SigningConfigurations,ExtremeFit.WebApi.Authorization.TokenConfigurations)">
+            <summary>
+            Login de usuário
+            </summary>
+            <param name="usuarioDto">nome de usuário e senha</param>
+            <param name="signingConfigurations">assinatura já configurada no sistema</param>
+            <param name="tokenConfigurations">token já configurado no sistema</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AuthController.LoginRfid(ExtremeFit.Repository.DTOs.IotDto,ExtremeFit.WebApi.Authorization.SigningConfigurations,ExtremeFit.WebApi.Authorization.TokenConfigurations)">
+            <summary>
+            Login de usuário por cartão RFID
+            </summary>
+            <param name="iotDto">número RFID</param>
+            <param name="signingConfigurations">assinatura já configurada no sistema</param>
+            <param name="tokenConfigurations">token já configurado no sistema</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AuthController.LoginDigital(ExtremeFit.Repository.DTOs.IotDto,ExtremeFit.WebApi.Authorization.SigningConfigurations,ExtremeFit.WebApi.Authorization.TokenConfigurations)">
+            <summary>
+            Login de usuário por digital
+            </summary>
+            <param name="iotDto">número da digital</param>
+            <param name="signingConfigurations">assinatura já configurada no sistema</param>
+            <param name="tokenConfigurations">token já configurado no sistema</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.AuthController.AtualizarIot(ExtremeFit.Repository.DTOs.UsuarioDto,ExtremeFit.WebApi.Authorization.SigningConfigurations,ExtremeFit.WebApi.Authorization.TokenConfigurations)">
+            <summary>
+            Atualiza dados de IOT (RFID e digital)
+            </summary>
+            <param name="usuarioDto">informações atualizadas do usuário correspondente</param>
+            <param name="signingConfigurations">assinatura já configurada no sistema</param>
+            <param name="tokenConfigurations">token já configurado no sistema</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.DadosFuncionarioController">
+            <summary>
+            Controller de acesso a informações de dados de funcionários (CPF, Setor, Função)
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DadosFuncionarioController.#ctor(ExtremeFit.Repository.Interfaces.IDadosFuncionariosRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DadosFuncionarioController.Listar">
+            <summary>
+            Lista todos os dados de funcionários já cadastrados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DadosFuncionarioController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de um único funcionário
+            </summary>
+            <param name="id">ID do funcionário</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DadosFuncionarioController.CadastrarDados(ExtremeFit.Repository.DTOs.DadosFuncionarioDto)">
+            <summary>
+            Cadastro de novos dados (CPF, Setor e Função) de um único funcionário
+            </summary>
+            <param name="dadosFuncionarioDto">dados do funcionário</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DadosFuncionarioController.AtualizarDados(ExtremeFit.Repository.DTOs.DadosFuncionarioDto,System.Int32)">
+            <summary>
+            Atualiza dados de funcionário
+            </summary>
+            <param name="dadosFuncionarioDto">dados atualizados do funcionário</param>
+            <param name="id">ID do funcionário</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DadosFuncionarioController.ExcluirDados(System.Int32)">
+            <summary>
+            Exclui dados de um funcionário
+            </summary>
+            <param name="id">ID do funcionário</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.DicaController">
+            <summary>
+            Controller de acesso a informações de dicas cadastradas
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DicaController.#ctor(ExtremeFit.Repository.Interfaces.IDicaRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DicaController.Listar">
+            <summary>
+            Lista todas as dicas cadastradas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DicaController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de uma única dica cadastrada
+            </summary>
+            <param name="id">ID da dica</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DicaController.CadastrarDica(ExtremeFit.Repository.DTOs.DicaDto)">
+            <summary>
+            Cadasto de nova dica
+            </summary>
+            <param name="dicaDto">informações da dica</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DicaController.Atualizar(ExtremeFit.Repository.DTOs.DicaDto,System.Int32)">
+            <summary>
+            Atualiza dados de dica cadastrada
+            </summary>
+            <param name="dicaDto">dados atualizados da dica</param>
+            <param name="id">ID da dica</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DicaController.Excluir(System.Int32)">
+            <summary>
+            Exclui uma dica
+            </summary>
+            <param name="id">ID da dica</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.DicaController.Validar(ExtremeFit.Repository.DTOs.ValidarDicaDto,System.Int32)">
+            <summary>
+            Valida ou invalida uma dica
+            </summary>
+            <param name="validarDica">informação true/false</param>
+            <param name="id">ID da dica</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.EmpresaController">
+            <summary>
+            Controller de acesso a informações de dados de empresas
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EmpresaController.#ctor(ExtremeFit.Repository.Interfaces.IEmpresaRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EmpresaController.Listar">
+            <summary>
+            Lista todas as empresas cadatradas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EmpresaController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de uma única empresa
+            </summary>
+            <param name="id">ID da empresa</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EmpresaController.CadastrarEmpresa(ExtremeFit.Repository.DTOs.EmpresaDto)">
+            <summary>
+            Cadastro de nova empresa
+            </summary>
+            <param name="empresaDto">informações da empresa</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EmpresaController.Atualizar(ExtremeFit.Repository.DTOs.EmpresaDto,System.Int32)">
+            <summary>
+            Atualiza dados de uma empresa
+            </summary>
+            <param name="empresaDto">informações atualizadas da empresa</param>
+            <param name="id">ID da empresa</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EmpresaController.Excluir(System.Int32)">
+            <summary>
+            Exclui dados de uma empresa
+            </summary>
+            <param name="id">ID da empresa</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.EspecialistaController">
+            <summary>
+            Controller de acesso a informações de dados de especialistas
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EspecialistaController.#ctor(ExtremeFit.Repository.Interfaces.IEspecialistaRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EspecialistaController.Listar">
+            <summary>
+            Lista dados de todos os especialistas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EspecialistaController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de um único especialista
+            </summary>
+            <param name="id">ID do especialista</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EspecialistaController.Atualizar(ExtremeFit.Repository.DTOs.EspecialistaDto,System.Int32)">
+            <summary>
+            Atualiza dados de um especialista
+            </summary>
+            <param name="especialistaDto">informações atualizadas do especialista</param>
+            <param name="id">ID do especialista</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EspecialistaController.Excluir(System.Int32)">
+            <summary>
+            Exclui um especialista
+            </summary>
+            <param name="id">ID do especialista</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.EventoController">
+            <summary>
+            Controller de acesso a informações de dados de eventos
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EventoController.#ctor(ExtremeFit.Repository.Interfaces.IEventoRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EventoController.Listar">
+            <summary>
+            Lista todos os eventos cadastrados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EventoController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de um único evento
+            </summary>
+            <param name="id">ID do evento</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EventoController.CadastrarEvento(ExtremeFit.Repository.DTOs.EventoDto)">
+            <summary>
+            Cadastro de novo evento
+            </summary>
+            <param name="eventoDto">informações do evento</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EventoController.Atualizar(ExtremeFit.Repository.DTOs.EventoDto,System.Int32)">
+            <summary>
+            Atualizar dados de um evento
+            </summary>
+            <param name="eventoDto">informações atualizadas de evento</param>
+            <param name="id">ID do evento</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.EventoController.Excluir(System.Int32)">
+            <summary>
+            Exclui um evento
+            </summary>
+            <param name="id">ID do evento</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.ExcelController">
+            <summary>
+            Controller para cadastro de dados de usuário por planilhas de excel
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.ExcelController.#ctor(ExtremeFit.Repository.Interfaces.IExcelRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.ExcelController.CadastrarExcel(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Cadastro de dados de funcionários com planilha excel
+            </summary>
+            <param name="arquivo">arquivo excel com dados dos funcionários</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.FuncionarioController">
+            <summary>
+            Controller de acesso a informações de funcionários
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.FuncionarioController.#ctor(ExtremeFit.Repository.Interfaces.IFuncionarioRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.FuncionarioController.Listar">
+            <summary>
+            Lista todos os funcionários cadastrados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.FuncionarioController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de um único funcionário
+            </summary>
+            <param name="id">ID do funcionário</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.FuncionarioController.Atualizar(ExtremeFit.Repository.DTOs.FuncionarioDto,System.Int32)">
+            <summary>
+            Atualiza dados de um funcionário e usuário relacionado
+            </summary>
+            <param name="funcionarioDto"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.FuncionarioController.Excluir(System.Int32)">
+            <summary>
+            Exclui dados de um funcionário
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.FuncionarioController.UnidadesFavoritas(ExtremeFit.Repository.DTOs.UnidadesDto,System.Int32)">
+            <summary>
+            Atualiza dados de unidade favoritas do funcionário para listagem de eventos
+            </summary>
+            <param name="unidadesDto">informações da unidade</param>
+            <param name="id">ID do funcionário</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.IntensidadeDorController">
+            <summary>
+            Controller de acesso a informações de intensidade das dores para cadastro de relatórios
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.IntensidadeDorController.#ctor(ExtremeFit.Repository.Interfaces.IIntensidadeDorRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.IntensidadeDorController.Listar">
+            <summary>
+            Lista todas as intensidades cadastradas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.LocalDorController">
+            <summary>
+            Controller de acesso a informações de locais das dores para cadastro de relatório
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.LocalDorController.#ctor(ExtremeFit.Repository.Interfaces.ILocalDorRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.LocalDorController.Listar">
+            <summary>
+            Lista todos os locais cadastrados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.PerguntaController">
+            <summary>
+            Controller de acesso a informações de perguntas
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PerguntaController.#ctor(ExtremeFit.Repository.Interfaces.IPerguntaRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PerguntaController.Listar">
+            <summary>
+            Lista todas as perguntas cadastradas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PerguntaController.BuscarId(System.Int32)">
+            <summary>
+            Retorna dados de uma única pergunta
+            </summary>
+            <param name="id">ID da pergunta</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PerguntaController.Cadastrar(ExtremeFit.Repository.DTOs.PerguntaDto)">
+            <summary>
+            Cadastro de nova pergunta com alternativas associadas
+            </summary>
+            <param name="perguntaDto">informações de pergunta com alternativas</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PerguntaController.Atualizar(ExtremeFit.Repository.DTOs.PerguntaDto,System.Int32)">
+            <summary>
+            Atualiza uma pergunta e as alternativas
+            </summary>
+            <param name="perguntaDto">informações atualizadas da pergunta</param>
+            <param name="id">ID da pergunta</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PerguntaController.Excluir(System.Int32)">
+            <summary>
+            Exclui uma pergunta e alternativas associadas
+            </summary>
+            <param name="id">ID da alternativa</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.PermissaoController">
+            <summary>
+            Controller de acesso a informações de permissões
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PermissaoController.#ctor(ExtremeFit.Repository.Interfaces.IPermissaoRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PermissaoController.Listar">
+            <summary>
+            Lista todas as permissões cadastradas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.PesquisaController">
+            <summary>
+            Controller de acesso a informações de pesquisas realizadas
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PesquisaController.#ctor(ExtremeFit.Repository.Interfaces.IPesquisaRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PesquisaController.Listar">
+            <summary>
+            Lista todas as pesquisas cadastradas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PesquisaController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de uma única pesquisa
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.PesquisaController.Cadastrar(ExtremeFit.Repository.DTOs.PesquisaDto)">
+            <summary>
+            Cadastro de nova pesquisa
+            </summary>
+            <param name="pesquisaDto">informações de pesquisa com alternativa escolhida</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.RelatorioController">
+            <summary>
+            Controller de acesso a informações de relatórios produzidos por funcionários
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.RelatorioController.#ctor(ExtremeFit.Repository.Interfaces.IRelatorioRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.RelatorioController.Listar">
+            <summary>
+            Lista todos os relatórios cadastrados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.RelatorioController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de um único relatório
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.RelatorioController.Cadastrar(ExtremeFit.Repository.DTOs.RelatorioDto)">
+            <summary>
+            Cadastro de novo relatório
+            </summary>
+            <param name="relatorioDto">informações de relatório</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.RelatorioController.Atualizar(ExtremeFit.Repository.DTOs.RelatorioDto,System.Int32)">
+            <summary>
+            Atualiza informações de relatório
+            </summary>
+            <param name="relatorioDto">informações atualizadas de relatório</param>
+            <param name="id">ID do relatório</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.RelatorioController.Deletar(System.Int32)">
+            <summary>
+            Exclui dados de relatório
+            </summary>
+            <param name="id">ID do relatório</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Controllers.UnidadeSesiController">
+            <summary>
+            Controller de acesso a informações de unidades Sesi
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.UnidadeSesiController.#ctor(ExtremeFit.Repository.Interfaces.IUnidadeSesiRepository)">
+            <summary>
+            Construtor de classe com acesso ao repositório
+            </summary>
+            <param name="repo">Repositório de Autorização</param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.UnidadeSesiController.Listar">
+            <summary>
+            Lista todas as unidades Sesi
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.UnidadeSesiController.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna dados de uma única unidade Sesi
+            </summary>
+            <param name="id">ID da unidade</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.UnidadeSesiController.BuscarEventos(System.Int32)">
+            <summary>
+            Retorna lista de todos os eventos de uma unidade Sesi
+            </summary>
+            <param name="id">ID da unidade</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.UnidadeSesiController.Cadastrar(ExtremeFit.Repository.DTOs.UnidadeSesiDto)">
+            <summary>
+            Cadastro de nova unidade Sesi
+            </summary>
+            <param name="unidadeSesiDto">informações da unidade</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Controllers.UnidadeSesiController.Atualizar(ExtremeFit.Repository.DTOs.UnidadeSesiDto,System.Int32)">
+            <summary>
+            Atualização de dados de uma unidade Sesi
+            </summary>
+            <param name="unidadeSesiDto">informações atualizadas</param>
+            <param name="id">ID da unidade</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Helpers.Extensions">
+            <summary>
+            Controle de exceções
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Helpers.Extensions.AddApplicationError(Microsoft.AspNetCore.Http.HttpResponse,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="response"></param>
+            <param name="message"></param>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Program.BuildWebHost(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtremeFit.WebApi.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ExtremeFit.WebApi.Startup._configuration">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:ExtremeFit.WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
     </members>
 </doc>

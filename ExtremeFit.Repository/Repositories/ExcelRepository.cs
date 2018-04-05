@@ -73,7 +73,19 @@ namespace ExtremeFit.Repository.Repositories
         {
             for (int s = 0; s < lista.Count; s++)
             {
-                _context.DadosFuncionarios.Add(lista[s]);
+                // procura se o CPF já tem informações
+                DadosFuncionarioDomain dadosFuncionario =  _context.DadosFuncionarios
+                                                                    .FirstOrDefault(x => 
+                                                                        x.CPF == lista[s].CPF);
+                if(dadosFuncionario == null)
+                    _context.DadosFuncionarios.Add(lista[s]); // adiciona se não existir
+                else // atualiza se existir
+                    dadosFuncionario.CPF = lista[s].CPF;
+                    dadosFuncionario.Funcao = lista[s].Funcao;
+                    dadosFuncionario.Setor = lista[s].Setor;
+                    dadosFuncionario.EmpresaId = lista[s].EmpresaId;
+
+                    _context.DadosFuncionarios.Update(dadosFuncionario); 
             }
 
             return _context.SaveChanges();
