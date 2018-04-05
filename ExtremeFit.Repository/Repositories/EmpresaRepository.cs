@@ -77,7 +77,14 @@ namespace ExtremeFit.Repository.Repositories
 
         public List<EmpresaDomain> Listar()
         {
-            var lista = _context.Empresas.ToList();
+            var lista = _context.Empresas.Include(e => e.DadosFuncionarios)
+                                         .Include(e => e.Pesquisas)
+                                            .ThenInclude(p => p.Alternativa)
+                                         .Include(e => e.Relatorios)
+                                            .ThenInclude(r => r.Intensidade)
+                                         .Include(e => e.Relatorios)
+                                            .ThenInclude(r => r.LocalDor)
+                                         .ToList();
 
             return lista;
         }

@@ -21,6 +21,8 @@ namespace ExtremeFit.Domain.Entities
         public string Digital { get; set; }
 
         public ICollection<UsuarioPermissaoDomain> Permissoes { get; set; }
+        public ICollection<EspecialistaDomain> Especialistas { get; set; }
+        public ICollection<FuncionarioDomain> Funcionarios { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]

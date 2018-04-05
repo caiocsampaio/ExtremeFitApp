@@ -35,7 +35,7 @@ namespace ExtremeFit.Repository.Repositories
 
         public DadosFuncionarioDomain BuscarPorId(int id)
         {
-            var dados = _context.DadosFuncionarios.FirstOrDefault(x => x.Id == id);
+            var dados = _context.DadosFuncionarios.Include(d => d.Empresa).FirstOrDefault(x => x.Id == id);
 
             return dados;
         }
@@ -65,7 +65,7 @@ namespace ExtremeFit.Repository.Repositories
 
         public List<DadosFuncionarioDomain> Listar()
         {
-            var lista = _context.DadosFuncionarios.ToList();
+            var lista = _context.DadosFuncionarios.Include(d => d.Empresa).ToList();
 
             return lista;
         }

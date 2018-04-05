@@ -4,6 +4,7 @@ using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DataContext;
 using ExtremeFit.Repository.DTOs;
 using ExtremeFit.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExtremeFit.Repository.Repositories
 {
@@ -32,7 +33,11 @@ namespace ExtremeFit.Repository.Repositories
 
         public UnidadeSesiDomain BuscarPorId(int id)
         {
-            UnidadeSesiDomain unidade = _context.UnidadesSesi.FirstOrDefault(x => x.Id == id);
+            UnidadeSesiDomain unidade = _context.UnidadesSesi
+                                                    .Include(u => u.Eventos)
+                                                    .Include(u => u.Funcionarios)
+                                                        .ThenInclude(f => f.Funcionario)
+                                                    .FirstOrDefault(x => x.Id == id);
 
             return unidade;
         }
@@ -60,16 +65,21 @@ namespace ExtremeFit.Repository.Repositories
 
         public List<UnidadeSesiDomain> Lista()
         {
-            var lista = _context.UnidadesSesi.ToList();
+            var lista = _context.UnidadesSesi
+                                        .Include(u => u.Eventos)
+                                        .Include(u => u.Funcionarios)
+                                        .ToList();
 
             return lista;
         }
 
         public ICollection<EventoDomain> ListarEventosPorId(int id)
         {
-            UnidadeSesiDomain unidade = _context.UnidadesSesi.FirstOrDefault(x => x.Id == id);
+            var eventos = _context.Eventos
+                                        .Include(e => e.Unidade)
+                                        .Where(x => x.UnidadeId == id).ToList();
 
-            return unidade.Eventos;
+            return eventos;
         }
     }
 }

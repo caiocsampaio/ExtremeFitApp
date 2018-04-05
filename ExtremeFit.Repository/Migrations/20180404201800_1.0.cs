@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
 namespace ExtremeFit.Repository.Migrations
 {
-    public partial class _031 : Migration
+    public partial class _10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,12 +15,67 @@ namespace ExtremeFit.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(maxLength: 30, nullable: false),
-                    Esporte = table.Column<string>(maxLength: 20, nullable: false)
+                    Esporte = table.Column<string>(maxLength: 20, nullable: false),
+                    Nome = table.Column<string>(maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Atletas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Empresas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CNAE = table.Column<string>(maxLength: 9, nullable: false),
+                    CNPJ = table.Column<string>(maxLength: 14, nullable: false),
+                    NomeFantasia = table.Column<string>(maxLength: 40, nullable: false),
+                    RazaoSocial = table.Column<string>(maxLength: 40, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Empresas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IntensidadeDores",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Intensidade = table.Column<string>(maxLength: 15, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IntensidadeDores", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LocalDores",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LocalDor = table.Column<string>(maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LocalDores", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Perguntas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Descricao = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Perguntas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,8 +97,8 @@ namespace ExtremeFit.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    NomeUnidade = table.Column<string>(maxLength: 50, nullable: false),
-                    Cidade = table.Column<string>(maxLength: 30, nullable: false)
+                    Cidade = table.Column<string>(maxLength: 30, nullable: false),
+                    NomeUnidade = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,16 +111,94 @@ namespace ExtremeFit.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DataAlteracao = table.Column<DateTime>(nullable: false),
+                    Digital = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     PasswordHash = table.Column<byte[]>(nullable: false),
                     PasswordSalt = table.Column<byte[]>(nullable: false),
-                    Rfid = table.Column<string>(nullable: true),
-                    Digital = table.Column<string>(nullable: true),
-                    DataAlteracao = table.Column<DateTime>(nullable: false)
+                    Rfid = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DadosFuncionarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CPF = table.Column<string>(maxLength: 11, nullable: false),
+                    EmpresaId = table.Column<int>(nullable: false),
+                    Funcao = table.Column<string>(maxLength: 30, nullable: false),
+                    Setor = table.Column<string>(maxLength: 30, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DadosFuncionarios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DadosFuncionarios_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Relatorios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DataAlteracao = table.Column<DateTime>(nullable: false),
+                    Descricao = table.Column<string>(nullable: false),
+                    EmpresaId = table.Column<int>(nullable: false),
+                    IntensidadeDorId = table.Column<int>(nullable: false),
+                    LocalDorId = table.Column<int>(nullable: false),
+                    Setor = table.Column<string>(maxLength: 30, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Relatorios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Relatorios_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Relatorios_IntensidadeDores_IntensidadeDorId",
+                        column: x => x.IntensidadeDorId,
+                        principalTable: "IntensidadeDores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Relatorios_LocalDores_LocalDorId",
+                        column: x => x.LocalDorId,
+                        principalTable: "LocalDores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Alternativas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Descricao = table.Column<string>(nullable: true),
+                    PerguntaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Alternativas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Alternativas_Perguntas_PerguntaId",
+                        column: x => x.PerguntaId,
+                        principalTable: "Perguntas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -95,8 +228,8 @@ namespace ExtremeFit.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(maxLength: 50, nullable: false),
                     Especialidade = table.Column<string>(maxLength: 30, nullable: false),
+                    Nome = table.Column<string>(maxLength: 50, nullable: false),
                     UsuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -116,11 +249,11 @@ namespace ExtremeFit.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DataAlteracao = table.Column<DateTime>(nullable: false),
+                    DataEvento = table.Column<DateTime>(nullable: false),
                     Descricao = table.Column<string>(nullable: false),
                     UnidadeId = table.Column<int>(nullable: false),
-                    UsuarioId = table.Column<int>(nullable: false),
-                    DataEvento = table.Column<DateTime>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: false)
+                    UsuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -145,14 +278,14 @@ namespace ExtremeFit.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(maxLength: 50, nullable: false),
-                    CPF = table.Column<string>(maxLength: 11, nullable: false),
-                    Sexo = table.Column<string>(maxLength: 15, nullable: false),
                     Altura = table.Column<double>(nullable: false),
-                    Peso = table.Column<double>(nullable: false),
+                    CPF = table.Column<string>(maxLength: 11, nullable: false),
+                    DataAlteracao = table.Column<DateTime>(nullable: false),
                     DataNascimento = table.Column<DateTime>(nullable: false),
-                    UsuarioId = table.Column<int>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: false)
+                    Nome = table.Column<string>(maxLength: 50, nullable: false),
+                    Peso = table.Column<double>(nullable: false),
+                    Sexo = table.Column<string>(maxLength: 15, nullable: false),
+                    UsuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -171,8 +304,8 @@ namespace ExtremeFit.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UsuarioId = table.Column<int>(nullable: false),
-                    PermissaoId = table.Column<int>(nullable: false)
+                    PermissaoId = table.Column<int>(nullable: false),
+                    UsuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -187,6 +320,35 @@ namespace ExtremeFit.Repository.Migrations
                         name: "FK_UsuariosPermissoes_Usuarios_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pesquisas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AlternativaId = table.Column<int>(nullable: false),
+                    Data = table.Column<DateTime>(nullable: false),
+                    EmpresaId = table.Column<int>(nullable: false),
+                    Pergunta = table.Column<string>(nullable: true),
+                    Setor = table.Column<string>(maxLength: 30, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pesquisas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pesquisas_Alternativas_AlternativaId",
+                        column: x => x.AlternativaId,
+                        principalTable: "Alternativas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pesquisas_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -218,6 +380,16 @@ namespace ExtremeFit.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Alternativas_PerguntaId",
+                table: "Alternativas",
+                column: "PerguntaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DadosFuncionarios_EmpresaId",
+                table: "DadosFuncionarios",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Dicas_UsuarioId",
                 table: "Dicas",
                 column: "UsuarioId");
@@ -230,8 +402,7 @@ namespace ExtremeFit.Repository.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Eventos_UnidadeId",
                 table: "Eventos",
-                column: "UnidadeId",
-                unique: true);
+                column: "UnidadeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Eventos_UsuarioId",
@@ -254,6 +425,31 @@ namespace ExtremeFit.Repository.Migrations
                 column: "UnidadeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Pesquisas_AlternativaId",
+                table: "Pesquisas",
+                column: "AlternativaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pesquisas_EmpresaId",
+                table: "Pesquisas",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Relatorios_EmpresaId",
+                table: "Relatorios",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Relatorios_IntensidadeDorId",
+                table: "Relatorios",
+                column: "IntensidadeDorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Relatorios_LocalDorId",
+                table: "Relatorios",
+                column: "LocalDorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UsuariosPermissoes_PermissaoId",
                 table: "UsuariosPermissoes",
                 column: "PermissaoId");
@@ -270,6 +466,9 @@ namespace ExtremeFit.Repository.Migrations
                 name: "Atletas");
 
             migrationBuilder.DropTable(
+                name: "DadosFuncionarios");
+
+            migrationBuilder.DropTable(
                 name: "Dicas");
 
             migrationBuilder.DropTable(
@@ -282,6 +481,12 @@ namespace ExtremeFit.Repository.Migrations
                 name: "FuncionariosUnidadesFavoritas");
 
             migrationBuilder.DropTable(
+                name: "Pesquisas");
+
+            migrationBuilder.DropTable(
+                name: "Relatorios");
+
+            migrationBuilder.DropTable(
                 name: "UsuariosPermissoes");
 
             migrationBuilder.DropTable(
@@ -291,10 +496,25 @@ namespace ExtremeFit.Repository.Migrations
                 name: "UnidadesSesi");
 
             migrationBuilder.DropTable(
+                name: "Alternativas");
+
+            migrationBuilder.DropTable(
+                name: "Empresas");
+
+            migrationBuilder.DropTable(
+                name: "IntensidadeDores");
+
+            migrationBuilder.DropTable(
+                name: "LocalDores");
+
+            migrationBuilder.DropTable(
                 name: "Permissoes");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
+
+            migrationBuilder.DropTable(
+                name: "Perguntas");
         }
     }
 }

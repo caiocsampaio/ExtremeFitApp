@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using ExtremeFit.Domain.Entities;
 using ExtremeFit.Repository.DataContext;
@@ -20,14 +21,23 @@ namespace ExtremeFit.Repository.Repositories
         {
             try{
                 var alternativa = _context.Alternativas
-                    .Include("Pergunta")
-                    .FirstOrDefault(x => x.Id == id);
+                                            .Include("Pergunta")
+                                            .FirstOrDefault(x => x.Id == id);
                 
                 return alternativa;
             }
             catch(Exception e){
                 throw new Exception(e.Message);
             }
+        }
+
+        public List<AlternativaDomain> Listar()
+        {
+            var lista = _context.Alternativas
+                                    .Include(a => a.Pergunta)
+                                    .ToList();
+
+            return lista;
         }
     }
 }

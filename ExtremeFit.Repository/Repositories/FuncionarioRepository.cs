@@ -91,6 +91,7 @@ namespace ExtremeFit.Repository.Repositories
                 FuncionarioDomain funcionario = _context.Funcionarios
                                                         .Include(f => f.Usuario)
                                                             .ThenInclude(u => u.Permissoes)
+                                                                .ThenInclude(p => p.Permissao)
                                                         .Include(f => f.UnidadesFavoritas)
                                                         .FirstOrDefault(x => x.Id == id);
 
@@ -126,6 +127,7 @@ namespace ExtremeFit.Repository.Repositories
                 var lista = _context.Funcionarios
                                     .Include(f => f.Usuario)
                                         .ThenInclude(u => u.Permissoes)
+                                            .ThenInclude(p => p.Permissao)
                                     .Include(f => f.UnidadesFavoritas)
                                     .ToList();
 

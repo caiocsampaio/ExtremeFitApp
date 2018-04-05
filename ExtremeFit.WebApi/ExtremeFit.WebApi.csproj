@@ -3,7 +3,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.1\ExtremeFitApi.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\ExtremeFitApi.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="wwwroot\"/>

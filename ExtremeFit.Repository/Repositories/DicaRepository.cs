@@ -31,7 +31,9 @@ namespace ExtremeFit.Repository.Repositories
         public DicaDomain BuscarPorId(int id)
         {
             DicaDomain dica = _context.Dicas
-                                        .Include(d => d.Usuario)
+                                        .Include("Usuario")
+                                            .Include("Usuario.Especialistas")
+                                            .Include("Usuario.Funcionarios")
                                         .FirstOrDefault(x => x.Id == id);
 
             return dica;
@@ -61,7 +63,9 @@ namespace ExtremeFit.Repository.Repositories
         public List<DicaDomain> Listar()
         {
             var lista = _context.Dicas
-                                    .Include(d => d.Usuario)
+                                    .Include("Usuario")
+                                        .Include("Usuario.Especialistas")
+                                        .Include("Usuario.Funcionarios")
                                     .ToList();
 
             return lista;

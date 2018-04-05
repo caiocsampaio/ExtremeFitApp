@@ -37,7 +37,7 @@ namespace ExtremeFit.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CadastrarDados(DadosFuncionarioDto dadosFuncionarioDto)
+        public IActionResult CadastrarDados([FromBody] DadosFuncionarioDto dadosFuncionarioDto)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);

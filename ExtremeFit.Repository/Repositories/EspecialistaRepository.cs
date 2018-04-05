@@ -50,7 +50,11 @@ namespace ExtremeFit.Repository.Repositories
         public EspecialistaDomain BuscarPorId(int id)
         {
             try{
-                EspecialistaDomain especialista = _context.Especialistas.FirstOrDefault(x => x.Id == id);
+                EspecialistaDomain especialista = _context.Especialistas
+                                                            .Include(e => e.Usuario)
+                                                                .ThenInclude(u => u.Permissoes)
+                                                                    .ThenInclude(p => p.Permissao)
+                                                            .FirstOrDefault(x => x.Id == id);
 
                 return especialista;
             }

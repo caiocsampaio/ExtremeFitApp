@@ -15,6 +15,17 @@ namespace ExtremeFit.WebApi.Controllers
             _repo = repo;
         }
 
+        [HttpGet]
+        public IActionResult Listar()
+        {
+            var lista = _repo.Listar();
+
+            if(lista == null)
+                return NotFound("Nenhuma alternativa encontrada");
+            
+            return Ok(lista);
+        }
+
         [HttpGet("{id}")]
         public IActionResult BuscarAlternativa(int id)
         {

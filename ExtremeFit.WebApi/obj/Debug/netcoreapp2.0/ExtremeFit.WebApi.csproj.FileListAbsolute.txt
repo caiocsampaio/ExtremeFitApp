@@ -1,9 +1,9 @@
+C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFitApi.xml
 C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFit.WebApi.deps.json
 C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFit.WebApi.runtimeconfig.json
 C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFit.WebApi.runtimeconfig.dev.json
 C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFit.WebApi.dll
 C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFit.WebApi.pdb
-C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFitApi.xml
 C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFit.Domain.dll
 C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFit.Repository.dll
 C:\Users\caioc\Documents\SENAI\000-Projeto\ExtremeFit.Solution\ExtremeFit.WebApi\bin\Debug\netcoreapp2.0\ExtremeFit.Repository.pdb

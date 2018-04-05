@@ -40,10 +40,6 @@ namespace ExtremeFit.WebApi
             services.AddDbContext<ApiContext>(options => 
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc().AddJsonOptions(options => {
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            });
-
             // INTERFACES DE REPOSITORIO
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IAlternativaRepository, AlternativaRepository>();
@@ -59,6 +55,7 @@ namespace ExtremeFit.WebApi
             services.AddScoped<ILocalDorRepository, LocalDorRepository>();
             services.AddScoped<IPermissaoRepository, PermissaoRepository>();
             services.AddScoped<IPesquisaRepository, PesquisaRepository>();
+            services.AddScoped<IUnidadeSesiRepository, UnidadeSesiRepository>();
 
             //configuração para token
             var signingConfigurations = new SigningConfigurations();
@@ -97,6 +94,10 @@ namespace ExtremeFit.WebApi
                 auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser().Build());
+            });
+
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
 
             services.AddSwaggerGen(c => {
@@ -139,6 +140,10 @@ namespace ExtremeFit.WebApi
                     });
                 });
             }
+
+            app.UseAuthentication();
+
+            app.UseStaticFiles();
 
             app.UseSwagger();
 
