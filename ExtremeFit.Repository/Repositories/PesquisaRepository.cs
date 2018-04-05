@@ -37,7 +37,7 @@ namespace ExtremeFit.Repository.Repositories
                 AlternativaId = alternativa.Id,
                 EmpresaId = dadosFuncionario.EmpresaId,
                 Setor = dadosFuncionario.Setor,
-                Pergunta = alternativa.Pergunta.Descricao
+                Pergunta = alternativa.Pergunta.Pergunta
             };
 
             _context.Pesquisas.Add(pesquisa);

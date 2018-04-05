@@ -10,6 +10,6 @@ namespace ExtremeFit.Domain.Entities
 
         [ForeignKey("UnidadeId")]
         public UnidadeSesiDomain Unidade { get; set; }
-        public int UnidadeId { get; set; }
+        public int UnidadeSesiId { get; set; }
     }
 }

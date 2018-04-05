@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ExtremeFit.Domain.Entities;
@@ -22,6 +23,7 @@ namespace ExtremeFit.Repository.Repositories
 
             dica.Descricao = dicaDto.Descricao;
             dica.UsuarioId = dicaDto.UsuarioId;
+            dica.DataAlteracao = DateTime.Now;
 
             _context.Dicas.Update(dica);
 

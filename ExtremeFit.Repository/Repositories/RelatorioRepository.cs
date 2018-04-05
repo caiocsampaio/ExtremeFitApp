@@ -47,6 +47,7 @@ namespace ExtremeFit.Repository.Repositories
         public int Cadastrar(RelatorioDto relatorioDto)
         {
             var relatorio = new RelatorioDorDomain{
+                EmpresaId = relatorioDto.EmpresaId,
                 Descricao = relatorioDto.Descricao,
                 LocalDorId = relatorioDto.LocalDorId,
                 IntensidadeDorId = relatorioDto.IntensidadeDorId,

@@ -6,6 +6,6 @@ namespace ExtremeFit.Domain.Entities
     {
         [Required]
         [StringLength(20, ErrorMessage="NomePermissao max length = 20")]
-        public string NomePermissao { get; set; }
+        public string Permissao { get; set; }
     }
 }

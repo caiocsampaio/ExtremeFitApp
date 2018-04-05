@@ -25,7 +25,7 @@ namespace ExtremeFit.Repository.Repositories
                 return 404;
 
             evento.Descricao = eventoDto.Descricao;
-            evento.UnidadeId = eventoDto.UnidadeId;
+            evento.UnidadeFavoritaId = eventoDto.UnidadeFavoritaId;
             evento.UsuarioId = eventoDto.UsuarioId;
             evento.DataEvento = eventoDto.DataEvento;
             evento.DataAlteracao = DateTime.Now;
@@ -62,7 +62,7 @@ namespace ExtremeFit.Repository.Repositories
             EventoDomain evento = new EventoDomain{
                 Descricao = eventoDto.Descricao,
                 UsuarioId = eventoDto.UsuarioId,
-                UnidadeId = eventoDto.UnidadeId,
+                UnidadeFavoritaId = eventoDto.UnidadeFavoritaId,
                 DataEvento = eventoDto.DataEvento,
                 DataAlteracao = DateTime.Now
             };

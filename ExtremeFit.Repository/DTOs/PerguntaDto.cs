@@ -6,7 +6,7 @@ namespace ExtremeFit.Repository.DTOs
     public class PerguntaDto
     {
         [Required]
-        public string Descricao { get; set; }
+        public string Pergunta { get; set; }
 
         [Required]
         public string[] Alternativas { get; set; }

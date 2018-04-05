@@ -4,7 +4,7 @@ namespace ExtremeFit.Domain.Entities
 {
     public class PerguntaDomain : BaseDomain
     {
-        public string Descricao { get; set; }
+        public string Pergunta { get; set; }
 
         public ICollection<AlternativaDomain> Alternativas { get; set; }
     }

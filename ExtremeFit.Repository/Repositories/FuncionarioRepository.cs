@@ -78,7 +78,7 @@ namespace ExtremeFit.Repository.Repositories
             {
                 _context.FuncionariosUnidadesFavoritas.Add(new FuncionarioUnidadeSesiDomain{
                     FuncionarioId = funcionario.Id,
-                    UnidadeId = unidadeId
+                    UnidadeSesiId = unidadeId
                 });
             }
 

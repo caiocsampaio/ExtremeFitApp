@@ -23,7 +23,7 @@ namespace ExtremeFit.Repository.Repositories
             try{
                 var pergunta = _context.Perguntas.FirstOrDefault(x => x.Id == id);
 
-                pergunta.Descricao = perguntaDto.Descricao;
+                pergunta.Pergunta = perguntaDto.Pergunta;
                 _context.Perguntas.Update(pergunta);
                 
                 //Encontrar alternativas referentes à pergunta
@@ -42,7 +42,7 @@ namespace ExtremeFit.Repository.Repositories
                 foreach (var novaAlternativa in novasAlternativas)
                 {
                     AlternativaDomain alternativa = new AlternativaDomain();
-                    alternativa.Descricao = novaAlternativa;
+                    alternativa.Resposta = novaAlternativa;
                     alternativa.Pergunta = pergunta;
                     _context.Alternativas.Add(alternativa);
                 }
@@ -94,13 +94,13 @@ namespace ExtremeFit.Repository.Repositories
         {
             try{
                 PerguntaDomain pergunta = new PerguntaDomain();
-                pergunta.Descricao = perguntaDto.Descricao;
+                pergunta.Pergunta = perguntaDto.Pergunta;
                 _context.Perguntas.Add(pergunta);
 
                 foreach (var item in perguntaDto.Alternativas)
                 {
                     AlternativaDomain alternativa = new AlternativaDomain();
-                    alternativa.Descricao = item;
+                    alternativa.Resposta = item;
                     alternativa.Pergunta = pergunta;
                     _context.Alternativas.Add(alternativa);
                 }

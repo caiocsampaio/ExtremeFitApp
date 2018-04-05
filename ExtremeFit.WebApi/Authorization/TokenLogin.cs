@@ -24,7 +24,7 @@ namespace ExtremeFit.WebApi.Authorization
 
             foreach (var usuarioPermissao in usuario.Permissoes)
             {
-                    identity.AddClaim(new Claim(ClaimTypes.Role, usuarioPermissao.Permissao.NomePermissao));
+                    identity.AddClaim(new Claim(ClaimTypes.Role, usuarioPermissao.Permissao.Permissao));
             }
 
             DateTime dataCriacao = DateTime.Now;

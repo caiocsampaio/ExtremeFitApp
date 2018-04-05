@@ -1,13 +1,15 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "b3a58c5f1c0dfa7c318f86bd8d36f43d947ad270"
+    "signature": "67e46c90a4dac423638a7ea1410f20859e2ec66c"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
       "ExtremeFit.Repository/1.0.0": {
         "dependencies": {
+          "ExcelDataReader": "3.4.0",
+          "ExcelDataReader.DataSet": "3.4.0",
           "ExtremeFit.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "2.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "2.0.2",
@@ -15,6 +17,19 @@
         },
         "runtime": {
           "ExtremeFit.Repository.dll": {}
+        }
+      },
+      "ExcelDataReader/3.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/ExcelDataReader.dll": {}
+        }
+      },
+      "ExcelDataReader.DataSet/3.4.0": {
+        "dependencies": {
+          "ExcelDataReader": "3.4.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ExcelDataReader.DataSet.dll": {}
         }
       },
       "Microsoft.AspNetCore.Http/2.1.0-preview1-final": {
@@ -514,6 +529,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "ExcelDataReader/3.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sBDS0csMdok65kEttJbhx2Uu2l8PEEO0SqmuPfPWBMgrM5f9+XyC0C8knkrUcEHAX8jEr11TXWsUfyqZu0NZ5g==",
+      "path": "exceldatareader/3.4.0",
+      "hashPath": "exceldatareader.3.4.0.nupkg.sha512"
+    },
+    "ExcelDataReader.DataSet/3.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h0OG+X4tLg85XCzidfNmrsH5g2lzaRtGVT5b9uRpQsMyau0d7b/TvLV7qhldq3UoNm3mjSomikMVegeyFffmaA==",
+      "path": "exceldatareader.dataset/3.4.0",
+      "hashPath": "exceldatareader.dataset.3.4.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Http/2.1.0-preview1-final": {
       "type": "package",

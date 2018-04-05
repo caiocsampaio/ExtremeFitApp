@@ -37,8 +37,11 @@ namespace ExtremeFit.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(RelatorioDto relatorioDto)
+        public IActionResult Cadastrar([FromBody] RelatorioDto relatorioDto)
         {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var s = _repo.Cadastrar(relatorioDto);
 
             if(s == 0)
@@ -48,8 +51,11 @@ namespace ExtremeFit.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar(RelatorioDto relatorioDto, int id)
+        public IActionResult Atualizar([FromBody] RelatorioDto relatorioDto, int id)
         {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+                
             var s = _repo.Atualizar(relatorioDto, id);
 
             if(s == 404)

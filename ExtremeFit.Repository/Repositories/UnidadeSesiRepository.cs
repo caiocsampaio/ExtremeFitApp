@@ -77,7 +77,7 @@ namespace ExtremeFit.Repository.Repositories
         {
             var eventos = _context.Eventos
                                         .Include(e => e.Unidade)
-                                        .Where(x => x.UnidadeId == id).ToList();
+                                        .Where(x => x.UnidadeFavoritaId == id).ToList();
 
             return eventos;
         }

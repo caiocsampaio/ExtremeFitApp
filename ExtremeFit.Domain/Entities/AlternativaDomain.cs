@@ -5,7 +5,7 @@ namespace ExtremeFit.Domain.Entities
 {
     public class AlternativaDomain : BaseDomain
     {
-        public string Descricao { get; set; }
+        public string Resposta { get; set; }
 
         [ForeignKey("PerguntaId")]
         public PerguntaDomain Pergunta { get; set; }

@@ -9,7 +9,7 @@ namespace ExtremeFit.Repository.DTOs
         public string Descricao { get; set; }
 
         [Required(ErrorMessage="O ID da unidade Sesi deve ser fornecido")]
-        public int UnidadeId { get; set; }
+        public int UnidadeFavoritaId { get; set; }
 
         [Required(ErrorMessage="O ID do usuário deve ser fornecido")]
         public int UsuarioId { get; set; }

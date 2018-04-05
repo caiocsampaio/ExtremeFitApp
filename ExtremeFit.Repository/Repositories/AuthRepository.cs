@@ -92,7 +92,7 @@ namespace ExtremeFit.Repository.Repositories
                     Usuario = usuario
                 };
 
-                PermissaoDomain permissao = _context.Permissoes.FirstOrDefault(x => x.NomePermissao == "Especialista");
+                PermissaoDomain permissao = _context.Permissoes.FirstOrDefault(x => x.Permissao == "Especialista");
 
                 UsuarioPermissaoDomain usuarioPermissao = new UsuarioPermissaoDomain{
                     UsuarioId = usuario.Id,

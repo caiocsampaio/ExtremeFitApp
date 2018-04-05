@@ -4861,6 +4861,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
+          "ExcelDataReader": "3.4.0",
+          "ExcelDataReader.DataSet": "3.4.0",
           "ExtremeFit.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "2.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "2.0.2",
@@ -12757,8 +12759,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "ExcelDataReader >= 3.4.0",
-      "ExcelDataReader.DataSet >= 3.4.0",
       "ExtremeFit.Domain >= 1.0.0",
       "ExtremeFit.Repository >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.6",
@@ -12814,14 +12814,6 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "ExcelDataReader": {
-            "target": "Package",
-            "version": "[3.4.0, )"
-          },
-          "ExcelDataReader.DataSet": {
-            "target": "Package",
-            "version": "[3.4.0, )"
-          },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "[2.0.6, )"
