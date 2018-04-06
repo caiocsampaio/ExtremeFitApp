@@ -16,8 +16,8 @@ namespace ExtremeFit.Repository.DataContext
         public DbSet<EventoDomain> Eventos { get; set; }
         public DbSet<FuncionarioDomain> Funcionarios { get; set; }
         public DbSet<FuncionarioUnidadeSesiDomain> FuncionariosUnidadesFavoritas { get; set; }
-        public DbSet<IntensidadeDorDomain> IntensidadeDores { get; set; }
-        public DbSet<LocalDorDomain> LocalDores { get; set; }
+        public DbSet<IntensidadeDorDomain> IntensidadesDores { get; set; }
+        public DbSet<LocalDorDomain> LocaisDores { get; set; }
         public DbSet<PerguntaDomain> Perguntas { get; set; }
         public DbSet<PermissaoDomain> Permissoes { get; set; }
         public DbSet<PesquisaDomain> Pesquisas { get; set; }

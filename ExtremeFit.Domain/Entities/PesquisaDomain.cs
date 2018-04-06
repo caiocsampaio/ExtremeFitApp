@@ -20,6 +20,6 @@ namespace ExtremeFit.Domain.Entities
 
         [Required]
         [DataType(DataType.DateTime)]
-        public DateTime Data { get; set; }
+        public DateTime DataAlteracao { get; set; }
     }
 }

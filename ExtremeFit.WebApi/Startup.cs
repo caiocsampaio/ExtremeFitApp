@@ -54,7 +54,7 @@ namespace ExtremeFit.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApiContext>(options => 
-                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnectionProducao")));
 
             // INTERFACES DE REPOSITORIO
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
@@ -74,6 +74,7 @@ namespace ExtremeFit.WebApi
             services.AddScoped<IUnidadeSesiRepository, UnidadeSesiRepository>();
             services.AddScoped<IRelatorioRepository, RelatorioRepository>();
             services.AddScoped<IExcelRepository, ExcelRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             //configuração para token
             var signingConfigurations = new SigningConfigurations();

@@ -33,6 +33,9 @@ namespace ExtremeFit.Repository.Repositories
             DadosFuncionarioDomain dadosFuncionario = _context.DadosFuncionarios.FirstOrDefault(x => x.CPF == funcionario.CPF);
             AlternativaDomain alternativa = _context.Alternativas.FirstOrDefault(x => x.Id == pesquisaDto.AlternativaId);
 
+            if(funcionario == null || dadosFuncionario == null || alternativa == null)
+                return 0;
+
             var pesquisa = new PesquisaDomain{
                 AlternativaId = alternativa.Id,
                 EmpresaDomainId = dadosFuncionario.EmpresaId,

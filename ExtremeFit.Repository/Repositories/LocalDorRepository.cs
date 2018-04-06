@@ -16,7 +16,7 @@ namespace ExtremeFit.Repository.Repositories
 
         public List<LocalDorDomain> Listar()
         {
-            var lista = _context.LocalDores.ToList();
+            var lista = _context.LocaisDores.ToList();
 
             return lista;
         }

@@ -16,7 +16,7 @@ namespace ExtremeFit.Repository.Repositories
 
         public List<IntensidadeDorDomain> Listar()
         {
-            var lista = _context.IntensidadeDores.ToList();
+            var lista = _context.IntensidadesDores.ToList();
 
             return lista;
         }

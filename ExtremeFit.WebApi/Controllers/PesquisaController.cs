@@ -63,7 +63,7 @@ namespace ExtremeFit.WebApi.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        public IActionResult Cadastrar(PesquisaDto pesquisaDto)
+        public IActionResult Cadastrar([FromBody] PesquisaDto pesquisaDto)
         {
             var s = _repo.Cadastrar(pesquisaDto);
 

@@ -51,6 +51,9 @@ namespace ExtremeFit.Repository.Repositories
 
         public int Inserir(DadosFuncionarioDto dados)
         {
+            if(!_context.Empresas.Any(x => x.Id == dados.EmpresaId))
+                return 0;
+
             var dadosCadastro = new DadosFuncionarioDomain{
                 CPF = dados.CPF,
                 EmpresaId = dados.EmpresaId,
